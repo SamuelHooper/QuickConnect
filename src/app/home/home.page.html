@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Quick Collect</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-accordion-group [multiple]="true" [value]="['recent','all']" class="ion-margin-top">
+    <ion-accordion value="recent">
+      <ion-item slot="header" color="secondary">
+        <ion-label>Recent Collections</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+          <ion-list [inset]="true">
+            <ion-item>
+              <ion-label>Pokémon Yellow</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Mega Man X</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>The Legend of Zelda</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Pac-Man</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Super Mario World</ion-label>
+            </ion-item>
+          </ion-list>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="all">
+      <ion-item slot="header" color="secondary">
+        <ion-label>All Collections</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Second Content</div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+</ion-content>
