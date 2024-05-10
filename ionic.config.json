@@ -1,0 +1,7 @@
+{
+  "name": "quick-collect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
