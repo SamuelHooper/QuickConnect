@@ -10,8 +10,8 @@ const routes: Routes = [
         loadChildren: () => import('src/app/home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'add',
-        loadChildren: () => import('src/app/add/add.module').then(m => m.AddPageModule)
+        path: 'items',
+        loadChildren: () => import('src/app/items/items.module').then(m => m.ItemsPageModule)
       },
       {
         path: '',

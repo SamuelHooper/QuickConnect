@@ -1,41 +1,63 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title class="ion-text-center">Quick Collect</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title class="ion-text-center">Quick Collect</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-accordion-group [multiple]="true" [value]="['recent','all']" class="ion-margin-top">
-    <ion-accordion value="recent">
-      <ion-item slot="header" color="secondary">
-        <ion-label>Recent Collections</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-          <ion-list [inset]="true">
-            <ion-item>
-              <ion-label>Pokémon Yellow</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Mega Man X</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>The Legend of Zelda</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Pac-Man</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Super Mario World</ion-label>
-            </ion-item>
-          </ion-list>
-      </div>
-    </ion-accordion>
-    <ion-accordion value="all">
-      <ion-item slot="header" color="secondary">
-        <ion-label>All Collections</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">Second Content</div>
-    </ion-accordion>
-  </ion-accordion-group>
+    <ion-button id="open-create-modal" expand="block">Create Collection</ion-button>
+    <ion-modal trigger="open-create-modal">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-button (click)="cancel()">Cancel</ion-button>
+                </ion-buttons>
+                <ion-title>Create Collection</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <ion-item>
+                    <ion-input
+                        label="Enter collection name"
+                        labelPlacement="stacked"
+                        type="text"
+                        placeholder="Collection name"
+                        [(ngModel)]="newCollectionName"
+                    ></ion-input>
+                </ion-item>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
 
+    <ion-accordion-group [value]="['all']" class="ion-margin-top">
+        <ion-accordion value="all">
+            <ion-item slot="header" color="secondary">
+                <ion-label>All Collections</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+                <ion-list *ngIf="collections().length > 0" [inset]="true">
+                    <ion-item *ngFor="let collection of collections()">
+                        <ion-label (click)="viewCollection(collection)">{{ collection.title }}</ion-label>
+                        <ion-button
+                            slot="end"
+                            (click)="deleteCollection(collection)"
+                            fill="clear"
+                            color="danger"
+                        >
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+                <ion-list *ngIf="collections().length === 0" [inset]="true">
+                    <ion-item>
+                        <ion-label>No collections.</ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-accordion>
+    </ion-accordion-group>
 </ion-content>
